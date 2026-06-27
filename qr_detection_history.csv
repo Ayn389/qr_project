@@ -1,0 +1,10 @@
+timestamp,qr_data,result,risk_score,reasons,evidence_path
+2026-06-21 11:42:18,"http://192.168.1.10/login/verify-bank-account
+",HIGH RISK,75,Uses IP address | Contains suspicious word 'verify' | Contains suspicious word 'login' | Contains suspicious word 'bank' | Contains suspicious word 'account',evidence/high_risk_20260621_114218.jpg
+2026-06-21 12:43:01,"http://192.168.1.10/login/verify-bank-account
+",HIGH RISK,75,Uses IP address | Contains suspicious word 'verify' | Contains suspicious word 'login' | Contains suspicious word 'bank' | Contains suspicious word 'account' | VirusTotal disabled,evidence/high_risk_20260621_124301.jpg
+2026-06-21 12:44:01,upi://pay?pa=7331168914@pthdfc&pn=Shyam%20Narayan,SAFE,0,Trusted UPI ID: 7331168914@pthdfc,
+2026-06-21 13:17:18,"http://192.168.1.10/login/verify-bank-account
+",HIGH RISK,75,Uses IP address | Contains suspicious word 'verify' | Contains suspicious word 'login' | Contains suspicious word 'bank' | Contains suspicious word 'account' | VirusTotal disabled,evidence/high_risk_20260621_131718.jpg
+2026-06-25 20:26:11,"http://192.168.1.10/login/verify-bank-account
+",HIGH RISK,75,Uses IP address | Contains suspicious word 'verify' | Contains suspicious word 'login' | Contains suspicious word 'bank' | Contains suspicious word 'account' | VirusTotal disabled,evidence/high_risk_20260625_202611.jpg
