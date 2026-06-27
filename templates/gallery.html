@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>QR Guardian | Evidence Gallery</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #020617;
+            color: #e5e7eb;
+        }
+
+        .header {
+            padding: 24px;
+            background: #0f172a;
+            border-bottom: 1px solid #334155;
+        }
+
+        .header a {
+            color: #60a5fa;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .container {
+            padding: 24px;
+            max-width: 1300px;
+            margin: auto;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .card {
+            background: #0f172a;
+            border: 1px solid #334155;
+            border-radius: 18px;
+            padding: 16px;
+            box-shadow: 0 18px 40px rgba(0,0,0,.35);
+        }
+
+        img {
+            width: 100%;
+            border-radius: 12px;
+            border: 1px solid #334155;
+            margin-bottom: 12px;
+        }
+
+        .safe { color: #22c55e; }
+        .suspicious { color: #facc15; }
+        .highrisk { color: #ef4444; }
+
+        .qr {
+            word-break: break-all;
+            background: #020617;
+            padding: 10px;
+            border-radius: 10px;
+            margin-top: 8px;
+            color: #cbd5e1;
+            font-size: 13px;
+        }
+
+        .small {
+            color: #94a3b8;
+            font-size: 13px;
+        }
+
+        @media (max-width: 900px) {
+            .grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="header">
+        <h1>Evidence Gallery</h1>
+        <a href="/">← Back to Dashboard</a>
+    </div>
+
+    <div class="container">
+        {% if records %}
+            <div class="grid">
+                {% for row in records %}
+                    <div class="card">
+                        {% if row.evidence_path %}
+                            <img src="/evidence/{{ row.evidence_path.split('/')[-1] }}">
+                        {% endif %}
+
+                        {% if row.result == "HIGH RISK" %}
+                            <h2 class="highrisk">HIGH RISK</h2>
+                        {% elif row.result == "SUSPICIOUS" %}
+                            <h2 class="suspicious">SUSPICIOUS</h2>
+                        {% else %}
+                            <h2 class="safe">SAFE</h2>
+                        {% endif %}
+
+                        <p><b>Risk Score:</b> {{ row.risk_score }}/100</p>
+                        <p><b>Time:</b> {{ row.timestamp }}</p>
+
+                        <div class="qr">
+                            {{ row.qr_data }}
+                        </div>
+
+                        <p class="small"><b>Breakdown:</b><br>{{ row.score_breakdown }}</p>
+                    </div>
+                {% endfor %}
+            </div>
+        {% else %}
+            <p>No evidence images found yet.</p>
+        {% endif %}
+    </div>
+</body>
+</html>
